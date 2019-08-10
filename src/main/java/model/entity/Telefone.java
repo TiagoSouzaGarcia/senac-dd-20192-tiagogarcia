@@ -2,20 +2,34 @@ package model.entity;
 
 public class Telefone {
 	
+	private int id;
+	private int idCliente;
 	private String codigoPais;
 	private String ddd;
 	private String numero;
-	private String tipo;
+	private String tipoLinha;
 	private boolean ativo;
 	
-	public Telefone(String codigoPais, String ddd, String numero, String tipo, boolean ativo) {
+	public Telefone() {
+		
+	}
+	
+		
+	public Telefone(int id, int idCliente, String codigoPais, String ddd, String numero, String tipoLinha,
+			boolean ativo) {
 		super();
+		this.id = id;
+		this.idCliente = idCliente;
 		this.codigoPais = codigoPais;
 		this.ddd = ddd;
 		this.numero = numero;
-		this.tipo = tipo;
+		this.tipoLinha = tipoLinha;
 		this.ativo = ativo;
 	}
+	
+	
+
+
 	public String getCodigoPais() {
 		return codigoPais;
 	}
@@ -34,11 +48,11 @@ public class Telefone {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	public String getTipo() {
-		return tipo;
+	public String getTipoLinha() {
+		return tipoLinha;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setTipoLinha(String tipoLinha) {
+		this.tipoLinha = tipoLinha;
 	}
 	public boolean isAtivo() {
 		return ativo;
@@ -48,9 +62,30 @@ public class Telefone {
 	}
 	@Override
 	public String toString() {
-		return "Telefone [codigoPais=" + codigoPais + ", ddd=" + ddd + ", numero=" + numero + ", tipo=" + tipo
-				+ ", ativo=" + ativo + "]";
+		return "\n" + "+" + codigoPais + "(" + ddd + ")" + numero + " - Linha: " + tipoLinha + " "
+				+ (ativo ? "Ativa" : "Inativa");
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
+	
 	
 	
 

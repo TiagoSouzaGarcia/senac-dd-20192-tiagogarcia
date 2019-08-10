@@ -2,23 +2,49 @@ package model.entity;
 
 import java.util.List;
 
+import java.util.ArrayList;
+
 public class Cliente {
 	
+	private int id;
 	private String nome;
 	private String cpf;
 	private List<Telefone> telefones;
 	private String sobrenome;
 	private Endereco endereco;
 	
-	public Cliente(String nome, String cpf, List<Telefone> telefones, String sobrenome, Endereco endereco) {
+	public Cliente(int id, String nome, String cpf, List<Telefone> telefones, String sobrenome, Endereco endereco) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefones = telefones;
 		this.sobrenome = sobrenome;
 		this.endereco = endereco;
 	}
-	
+
+	public Cliente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+		
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -43,13 +69,7 @@ public class Cliente {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public Endereco getEndereço() {
-		return endereco;
-	}
-	public void setEndereço(Endereco endereco) {
-		this.endereco = endereco;
-	}
-	
+		
 	public String getNomeCompleto() {
 		
 		String nomeCompleto = this.nome + " " + this.sobrenome;
@@ -59,11 +79,14 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		String mensagem = "Cliente: " + this.getNomeCompleto() + " (" + cpf + "). "
-				+ "\nEndereço: " + endereco
-				+ "\nTelefone"
-				
-				
+		String mensagem = "Cliente: " + this.getNomeCompleto() + " (" + cpf + "). " + "\nEndereÃ§o: " + endereco
+				+ "\nTelefones: ";
+
+		for (Telefone t : telefones) {
+			mensagem += t.toString() + "\n";
+		}
+
+		return mensagem;
 	}
 
 }
