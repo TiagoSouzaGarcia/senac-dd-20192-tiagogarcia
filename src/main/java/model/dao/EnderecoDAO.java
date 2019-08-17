@@ -80,13 +80,65 @@ public class EnderecoDAO implements BaseDAO<Endereco>{
 	}
 
 	public Endereco consultarPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = Banco.getConnection();
+		String sql = "SELECT id, rua, cep, estado, cidade, bairro, numero "
+				+ " FROM ENDERECO "
+				+ " WHERE ID=" + id;
+		
+		Statement stmt = Banco.getStatement(conn);
+		Endereco endereco = null;
+		
+		try { 
+			ResultSet resultadoDaConsulta = stmt.executeQuery(sql);
+			if(resultadoDaConsulta.next()) {
+				endereco = construirEnderecoDoResultSet(resultadoDaConsulta);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar endere�o por id = " + id);
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
+		return endereco;
+	}
+
+	private Endereco construirEnderecoDoResultSet(ResultSet resultadoDaConsulta) {
+		Endereco novoEndereco = null;
+		try {
+			novoEndereco = new Endereco();
+			novoEndereco.setId(resultadoDaConsulta.getInt("id"));
+			novoEndereco.setRua(resultadoDaConsulta.getString("rua"));
+			novoEndereco.setCep(resultadoDaConsulta.getString("cep"));
+			novoEndereco.setEstado(resultadoDaConsulta.getString("estado"));
+			novoEndereco.setCidade(resultadoDaConsulta.getString("cidade"));
+			novoEndereco.setNumero(resultadoDaConsulta.getString("numero"));
+			novoEndereco.setBairro(resultadoDaConsulta.getString("bairro"));
+		} catch (SQLException e) {
+			System.out.println("Erro ao construir endereço a partir do ResultSet");
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
+		return novoEndereco;
 	}
 
 	public ArrayList<Endereco> consultarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = Banco.getConnection();
+		String sql = " SELECT id, rua, cep, estado, cidade, bairro, numero "
+				+ " FROM ENDERECO ";
+		
+		Statement stmt = Banco.getStatement(conn); 
+		ArrayList<Endereco> enderecos = new ArrayList<Endereco>();
+		try {
+			ResultSet resultadoDaConsulta = stmt.executeQuery(sql);
+			while(resultadoDaConsulta.next()) {
+				Endereco endereco = construirEnderecoDoResultSet(resultadoDaConsulta);
+				enderecos.add(endereco);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar endereços");
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
+		return enderecos;
 	}
-
 }
