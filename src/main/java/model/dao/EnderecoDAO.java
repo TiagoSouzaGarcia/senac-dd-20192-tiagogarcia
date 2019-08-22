@@ -70,13 +70,17 @@ public class EnderecoDAO implements BaseDAO<Endereco>{
 		try {
 			stmt.setString(1, endereco.getRua());
 			stmt.setString(2, endereco.getCep());
-			stmt.setString(3, endereco.getCep());
-			stmt.setString(4, endereco.getCep());
-			stmt.setString(5, endereco.getCep());
-			stmt.setString(6, endereco.getCep());
+			stmt.setString(3, endereco.getEstado());
+			stmt.setString(4, endereco.getCidade());
+			stmt.setString(5, endereco.getBairro());
+			stmt.setString(6, endereco.getNumero());
+			quantidadeLinhasAfetadas = stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Erro ao atualizar endereço.");
+			System.out.println("Erro: " + e.getMessage());
 			
 		}
-		
+		return quantidadeLinhasAfetadas > 0;
 	}
 
 	public Endereco consultarPorId(int id) {

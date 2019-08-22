@@ -1,9 +1,11 @@
 package model.entity;
 
+import model.entity.Cliente;
+
 public class Telefone {
 	
 	private int id;
-	private int idCliente;
+	private Cliente cliente;
 	private String codigoPais;
 	private String ddd;
 	private String numero;
@@ -15,11 +17,11 @@ public class Telefone {
 	}
 	
 		
-	public Telefone(int id, int idCliente, String codigoPais, String ddd, String numero, String tipoLinha,
+	public Telefone(int id, Cliente cliente, String codigoPais, String ddd, String numero, String tipoLinha,
 			boolean ativo) {
 		super();
 		this.id = id;
-		this.idCliente = idCliente;
+		this.cliente = cliente;
 		this.codigoPais = codigoPais;
 		this.ddd = ddd;
 		this.numero = numero;
@@ -77,13 +79,16 @@ public class Telefone {
 	}
 
 
-	public int getIdCliente() {
-		return idCliente;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
+	public void setIdCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	
