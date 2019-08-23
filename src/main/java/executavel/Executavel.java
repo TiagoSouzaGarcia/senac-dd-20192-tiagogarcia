@@ -7,6 +7,8 @@ import model.entity.Endereco;
 import model.entity.Telefone;
 
 public class Executavel {
+	
+	private static final String CODIGO_PAIS_BRASIL = "55";
 
 	public static void main(String[] args) {
 		

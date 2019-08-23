@@ -80,12 +80,6 @@ public abstract class Empregado {
 		this.calcularDescontoIR();
 	}
 
-
-
-
-
-
-
 	public void calcularDescontoIR() {
 		double descontoImpostoRendaCalculado = 0;
 		
