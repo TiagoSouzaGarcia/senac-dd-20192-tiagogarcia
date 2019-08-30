@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.entity.Cliente;
 import model.entity.Telefone;
@@ -161,6 +162,63 @@ public class TelefoneDAO implements BaseDAO<Telefone>{
 		}
 		
 		return telefones;
+	}
+	
+	public ArrayList<Telefone> consultarTodosPorIdCliente (int idCliente) {
+		
+		Connection conn = Banco.getConnection();
+		String sql = " SELECT id, codigoPais, ddd, numero, tipoLinha, idCliente, ativo "
+				+ " FROM TELEFONE "
+				+ " WHERE IDCLIENTE = " + idCliente;
+		
+		Statement stmt = Banco.getStatement(conn);
+		ArrayList<Telefone> telefones = new ArrayList<Telefone>();
+		
+		try {
+			ResultSet resultadoDaConsulta = stmt.executeQuery(sql);
+			
+			while(resultadoDaConsulta.next()) {
+				Telefone telefone = construirTelefoneDoResultSet(resultadoDaConsulta);
+				telefones.add(telefone);
+			}
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar telefones por idCliente. Idcliente: " + idCliente);
+			System.out.println("Erro: " + e.getMessage());
+		}
+		
+		
+		return telefones;
+		
+	}
+
+	public void ativarTelefones(Cliente dono, ArrayList<Telefone> telefones) {
+		for (Telefone t: telefones) {
+			t.setCliente (dono);
+			t.setAtivo(true);
+			if (t.getId() > 0) {
+				alterar(t);
+			}else {
+				salvar(t);
+			}
+		}
+	}
+	
+	public void desativarTelefones(int idCliente) {
+		Connection conn = Banco.getConnection();
+		String sql = "UPDATE TELEFONE "
+				+ " SET idCliente=0, ativo=0 "
+				+ "WHERE IDCLIENT=? ";
+		
+			PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
+			int quantidadeLinhasAfetadas = 0;
+			
+			try {
+				stmt.setInt(1, idCliente);
+				quantidadeLinhasAfetadas = stmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("Erro ao desativar telefone.");
+				System.out.println("Erro: " + e.getMessage());
+			}
 	}
 
 }

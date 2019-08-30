@@ -1,15 +1,16 @@
 package model.entity;
 
+import model.entity.Cliente;
+
 public class Telefone {
 	
 	private int id;
+	private Cliente cliente;
 	private String codigoPais;
 	private String ddd;
 	private String numero;
 	private String tipoLinha;
 	private boolean ativo;
-	private Cliente cliente;
-	
 	
 	public Telefone() {
 		
@@ -61,7 +62,12 @@ public class Telefone {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	
+	@Override
+	public String toString() {
+		return "\n" + "+" + codigoPais + "(" + ddd + ")" + numero + " - Linha: " + tipoLinha + " "
+				+ (ativo ? "Ativa" : "Inativa");
+	}
+
 
 	public int getId() {
 		return id;
@@ -72,19 +78,14 @@ public class Telefone {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return " id=" + id + " |idCliente: " + cliente.getId() + "| codigoPais=" + codigoPais + "(" + ddd + ")"
-				+ numero + " - Linha: " + tipoLinha + ( ativo ? "Ativa" : "Inativa");
-	}
-
-
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
-	public void setCliente(Cliente cliente) {
+	public void setIdCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
