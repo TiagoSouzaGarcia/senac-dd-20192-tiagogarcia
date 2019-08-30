@@ -3,23 +3,24 @@ package model.entity;
 public class Telefone {
 	
 	private int id;
-	private int idCliente;
 	private String codigoPais;
 	private String ddd;
 	private String numero;
 	private String tipoLinha;
 	private boolean ativo;
+	private Cliente cliente;
+	
 	
 	public Telefone() {
 		
 	}
 	
 		
-	public Telefone(int id, int idCliente, String codigoPais, String ddd, String numero, String tipoLinha,
+	public Telefone(int id, Cliente cliente, String codigoPais, String ddd, String numero, String tipoLinha,
 			boolean ativo) {
 		super();
 		this.id = id;
-		this.idCliente = idCliente;
+		this.cliente = cliente;
 		this.codigoPais = codigoPais;
 		this.ddd = ddd;
 		this.numero = numero;
@@ -60,12 +61,7 @@ public class Telefone {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-	@Override
-	public String toString() {
-		return "\n" + "+" + codigoPais + "(" + ddd + ")" + numero + " - Linha: " + tipoLinha + " "
-				+ (ativo ? "Ativa" : "Inativa");
-	}
-
+	
 
 	public int getId() {
 		return id;
@@ -76,14 +72,20 @@ public class Telefone {
 		this.id = id;
 	}
 
-
-	public int getIdCliente() {
-		return idCliente;
+	@Override
+	public String toString() {
+		return " id=" + id + " |idCliente: " + cliente.getId() + "| codigoPais=" + codigoPais + "(" + ddd + ")"
+				+ numero + " - Linha: " + tipoLinha + ( ativo ? "Ativa" : "Inativa");
 	}
 
 
-	public void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 	

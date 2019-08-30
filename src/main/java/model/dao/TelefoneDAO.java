@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import model.entity.Cliente;
 import model.entity.Telefone;
+
 import model.dao.Banco;
+
 import model.entity.Telefone;
 
 public class TelefoneDAO implements BaseDAO<Telefone>{
@@ -27,7 +30,9 @@ public class TelefoneDAO implements BaseDAO<Telefone>{
 			stmt.setString(2,  novoTelefone.getDdd());
 			stmt.setString(3, novoTelefone.getNumero());
 			stmt.setString(4, novoTelefone.getTipoLinha());
-			stmt.setInt(5, novoTelefone.getIdCliente());
+			if(novoTelefone.getCliente() != null) {
+				stmt.setInt(5, novoTelefone.getCliente().getId());
+			}
 			stmt.setInt(6, novoTelefone.isAtivo() ? 1 : 0);
 			stmt.execute();
 			
@@ -75,7 +80,9 @@ public class TelefoneDAO implements BaseDAO<Telefone>{
 			stmt.setString(2, telefone.getDdd());
 			stmt.setString(3, telefone.getNumero());
 			stmt.setString(4, telefone.getTipoLinha());
-			stmt.setInt(5, telefone.getIdCliente());
+			if(telefone.getCliente() != null) {
+				stmt.setInt(5, telefone.getCliente().getId());
+			}
 			stmt.setInt(6, telefone.isAtivo() ? 1 : 0);
 			stmt.setInt(7, telefone.getId());
 			quantidadeLinhasAfetadas = stmt.executeUpdate();
@@ -117,7 +124,9 @@ public class TelefoneDAO implements BaseDAO<Telefone>{
 		telefone = new Telefone();
 		try {
 			telefone.setId(resultadoDaConsulta.getInt("id"));
-			telefone.setIdCliente(resultadoDaConsulta.getInt("idCliente"));
+			ClienteDAO cDAO = new ClienteDAO();
+			Cliente donoDoTelefone = cDAO.consultarPorId(resultadoDaConsulta.getInt("idCliente"));
+			telefone.setCliente(donoDoTelefone);
 			telefone.setCodigoPais(resultadoDaConsulta.getString("codigoPais"));
 			telefone.setDdd(resultadoDaConsulta.getString("ddd"));
 			telefone.setNumero(resultadoDaConsulta.getString("numero"));

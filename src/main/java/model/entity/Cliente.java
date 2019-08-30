@@ -1,7 +1,5 @@
 package model.entity;
 
-import java.util.List;
-
 import java.util.ArrayList;
 
 public class Cliente {
@@ -9,11 +7,11 @@ public class Cliente {
 	private int id;
 	private String nome;
 	private String cpf;
-	private List<Telefone> telefones;
+	private ArrayList<Telefone> telefones;
 	private String sobrenome;
 	private Endereco endereco;
 	
-	public Cliente(int id, String nome, String cpf, List<Telefone> telefones, String sobrenome, Endereco endereco) {
+	public Cliente(int id, String nome, String cpf, ArrayList<Telefone> telefones, String sobrenome, Endereco endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -57,10 +55,10 @@ public class Cliente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public List<Telefone> getTelefones() {
+	public ArrayList<Telefone> getTelefones() {
 		return telefones;
 	}
-	public void setTelefones(List<Telefone> telefones) {
+	public void setTelefones(ArrayList<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 	public String getSobrenome() {
