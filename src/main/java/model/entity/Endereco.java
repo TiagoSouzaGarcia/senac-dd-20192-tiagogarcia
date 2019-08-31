@@ -11,9 +11,8 @@ public class Endereco {
 	private String bairro;
 	
 	
-	public Endereco(int id, String rua, String cep, String estado, String cidade, String numero, String bairro) {
+	public Endereco(String rua, String cep, String estado, String cidade, String numero, String bairro) {
 		super();
-		this.id = id;
 		this.rua = rua;
 		this.cep = cep;
 		this.estado = estado;

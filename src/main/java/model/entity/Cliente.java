@@ -11,13 +11,12 @@ public class Cliente {
 	private String sobrenome;
 	private Endereco endereco;
 	
-	public Cliente(int id, String nome, String cpf, ArrayList<Telefone> telefones, String sobrenome, Endereco endereco) {
+	public Cliente( String nome, String sobrenome, String cpf, ArrayList<Telefone> telefones,  Endereco endereco) {
 		super();
-		this.id = id;
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.cpf = cpf;
 		this.telefones = telefones;
-		this.sobrenome = sobrenome;
 		this.endereco = endereco;
 	}
 
