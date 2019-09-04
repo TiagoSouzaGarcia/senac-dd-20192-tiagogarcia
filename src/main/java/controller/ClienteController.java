@@ -2,6 +2,7 @@ package controller;
 
 import model.bo.ClienteBO;
 import model.entity.Cliente;
+import model.entity.Endereco;
 
 public class ClienteController {
 	
@@ -56,6 +57,35 @@ public class ClienteController {
 	public void salvarCliente() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String validarCamposSalvar(String nomeDigitado, String sobrenomeDigitado, String cpfDigitado,
+			Endereco enderecoSelecionado) {
+		
+		String mensagem = "";
+		
+		if(nomeDigitado.isEmpty() || nomeDigitado.trim().length() < 3) {
+			mensagem += "Nome deve possuir pelo menos 3 letras \n";
+		}
+		
+		if(sobrenomeDigitado.isEmpty() || sobrenomeDigitado.trim().length() < 3) {
+			mensagem += "Sobrenome deve possuir pelo menos 3 letras \n";
+		}
+		
+		if(cpfDigitado.isEmpty() || cpfDigitado.trim().length() !=11) {
+			mensagem += "CPF deve possuir 11 dígitos \n";
+		}
+		
+		if(enderecoSelecionado == null) {
+			mensagem += "Selecione um endereço \n";
+		}
+		// TODO Auto-generated method stub
+		return mensagem;
+	}
+
+	public Cliente salvar(Cliente novoCliente) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
