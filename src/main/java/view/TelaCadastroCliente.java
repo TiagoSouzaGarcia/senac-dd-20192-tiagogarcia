@@ -42,6 +42,10 @@ public class TelaCadastroCliente {
 	private ArrayList<Endereco> todosOsEnderecos;
 	private String[] tipos = {TelefoneController.TIPO_TELEFONE_FIXO, TelefoneController.TIPO_TELEFONE_MOVEL};
 	private Cliente novoCliente = null;
+	private JButton btnSalvar;
+	private JComboBox comboBoxTipo;
+	private JButton btnAdicionarTelefone;
+	private JComboBox comboBoxEndereco;
 	
 	/**
 	 * Launch the application.
@@ -120,7 +124,7 @@ public class TelaCadastroCliente {
 		lblNovoTelefone.setBounds(10, 101, 94, 14);
 		frmCadastroDeCliente.getContentPane().add(lblNovoTelefone);
 		
-		JButton btnAdicionarTelefone = new JButton("Adicionar Telefone");
+		btnAdicionarTelefone = new JButton("Adicionar Telefone");
 		btnAdicionarTelefone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -144,8 +148,9 @@ public class TelaCadastroCliente {
 		lblNumero.setBounds(247, 126, 17, 14);
 		frmCadastroDeCliente.getContentPane().add(lblNumero);
 		
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				ClienteController clienteController = new ClienteController();
 				String nomeDigitado = textNome.getText();
@@ -183,7 +188,7 @@ public class TelaCadastroCliente {
 		
 		// Código do construtor da tela
 		consultarEnderecos();
-		JComboBox comboBoxEndereco = new JComboBox(todosOsEnderecos.toArray());
+		comboBoxEndereco = new JComboBox(todosOsEnderecos.toArray());
 		comboBoxEndereco.setBounds(274, 35, 137, 22);
 		comboBoxEndereco.setSelectedIndex(-1);
 		frmCadastroDeCliente.getContentPane().add(comboBoxEndereco);
@@ -206,11 +211,10 @@ public class TelaCadastroCliente {
 		frmCadastroDeCliente.getContentPane().add(textNumeroTelefone);
 		textNumeroTelefone.setColumns(10);
 		
-		JComboBox comboBoxTipo = new JComboBox();
+		comboBoxTipo = new JComboBox();
 		comboBoxTipo.setBounds(96, 150, 86, 22);
 		frmCadastroDeCliente.getContentPane().add(comboBoxTipo);
-		String tipo[] = new String[2];
-		tipo = {"Móvel", "Fixo"};
+		String tipo[] = {"Móvel", "Fixo"};
 	}
 
 	private void consultarEnderecos() {
