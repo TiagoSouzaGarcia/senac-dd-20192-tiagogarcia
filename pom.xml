@@ -3,4 +3,16 @@
   <groupId>senac-dd-20192-tiagogarcia</groupId>
   <artifactId>senac-dd-20192-tiagogarcia</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.15</version>
+		</dependency>
+	</dependencies>
 </project>
